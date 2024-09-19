@@ -1,19 +1,41 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import "./assets/index.scss";
+import "./assets/components/index.scss";
 
-import App from './App.vue'
-import router from './router'
-import PrimeVue from 'primevue/config'
-import Aura from '@primevue/themes/aura'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-const app = createApp(App)
+import App from "./App.vue";
+import router from "./router";
 
-app.use(createPinia())
-app.use(router)
+import PrimeVue from "primevue/config";
+import Lara from "@primevue/themes/lara";
+import "primeicons/primeicons.css"; // Iconos de PrimeVue
+import InputText from "./shared/components/InputText.vue";
+import StyleClass from "primevue/styleclass";
+
+const app = createApp(App);
+
+app.use(createPinia());
+app.use(router);
 app.use(PrimeVue, {
   theme: {
-    preset: Aura
-  }
-})
+    preset: Lara,
+    options: {
+      prefix: "p",
+      darkModeSelector: "media",
+      cssLayer: false,
+    },
+  },
+  zIndex: {
+    modal: 1100, //dialog, drawer
+    overlay: 1000, //select, popover
+    menu: 1000, //overlay menus
+    tooltip: 1100, //tooltip
+  },
+  InputText: {
+    component: InputText,
+    StyleClass: StyleClass,
+  },
+});
 
-app.mount('#app')
+app.mount("#app");

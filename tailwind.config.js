@@ -9,6 +9,6 @@ export default {
     },
   },
   plugins: [],
-  darkMode: false
+  darkMode: 'media'
 }
 

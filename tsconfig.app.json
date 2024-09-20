@@ -10,7 +10,10 @@
     "paths": {
       "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
-      "@views/*": ["./src/views/*"]
+      "@views/*": ["./src/views/*"],
+      "@axios/*": ["./src/plugins/axios/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@shared-types/*": ["./src/shared/types/*"]
     }
   }
 }

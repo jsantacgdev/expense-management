@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { type IUser, type ICredentials } from "@shared-types/user.d";
 import axiosInstance from "@axios/index";
+import { EEndpoints } from "@/shared/constants/endpoints";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -10,7 +11,7 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async login(credentials: ICredentials) {
       try {
-        const response = axiosInstance.post("/login", {
+        const response = axiosInstance.post(EEndpoints.LOGIN, {
           username: credentials.username,
           password: credentials.password,
         });
@@ -18,16 +19,18 @@ export const useAuthStore = defineStore("auth", {
         console.log(data.msg);
         this.user = credentials.username;
         this.isAuthenticated = true;
+        return true;
       } catch (error: any) {
         console.error(
           "Error en login:",
           error.response?.data?.msg || error.message
         );
+        return false;
       }
     },
     async register(user: IUser) {
       try {
-        const response = axiosInstance.post("/register", user);
+        const response = axiosInstance.post(EEndpoints.REGISTER, { ...user });
         const { data } = await response;
         console.log(data.msg);
         this.user = user.username;
@@ -40,7 +43,7 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async logout() {
-      await axiosInstance.post("/logout");
+      await axiosInstance.post(EEndpoints.LOGOUT);
       this.user = "";
       this.isAuthenticated = false;
     },

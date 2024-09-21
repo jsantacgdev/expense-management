@@ -14,7 +14,25 @@ const router = createRouter({
       name: "login",
       component: () => import("../views/LoginView.vue"),
     },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../views/SignupView.vue"),
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.name !== "login" && to.name !== "register") {
+    if (!authStore.isAuthenticated) {
+      next({ name: "login" });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

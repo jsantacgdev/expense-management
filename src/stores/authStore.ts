@@ -1,6 +1,5 @@
-import { ref, computed, type Ref } from "vue";
 import { defineStore } from "pinia";
-import { type IUser, type ICredentials } from "@shared/types/user";
+import { type IUser, type ICredentials } from "@shared-types/user.d";
 import axiosInstance from "@axios/index";
 
 export const useAuthStore = defineStore("auth", {
@@ -11,7 +10,10 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async login(credentials: ICredentials) {
       try {
-        const response = axiosInstance.post("/login", credentials);
+        const response = axiosInstance.post("/login", {
+          username: credentials.username,
+          password: credentials.password,
+        });
         const { data } = await response;
         console.log(data.msg);
         this.user = credentials.username;

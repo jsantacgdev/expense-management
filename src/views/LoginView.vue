@@ -16,13 +16,20 @@
     <div
       class="col-span-1 flex flex-col items-center align-middle justify-center"
     >
-      <LoginFormComponent />
+      <LoginFormComponent @login="onClickLoginBtn" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import LoginFormComponent from "@/components/modules/login/LoginFormComponent.vue";
+import { useAuthStore } from "@stores/authStore";
+
+const authStore = useAuthStore();
+
+const onClickLoginBtn = ({ usuario, password }: any) => {
+  authStore.login({ username: usuario, password });
+};
 </script>
 
 <style scoped>

@@ -10,7 +10,11 @@
         <div class="flex flex-col items-center justify-center">
           <InputText v-model="usuario" label="Usuario" class="mb-10" />
           <InputPassword v-model="password" label="Contraseña" />
-          <Button label="Entrar" class="w-48 mt-5" />
+          <Button
+            label="Entrar"
+            class="w-48 mt-5"
+            @click="emit('login', { usuario, password })"
+          />
         </div>
       </template>
       <template v-slot:footer>
@@ -36,6 +40,8 @@ import Card from "primevue/card";
 
 const usuario: Ref<string> = ref("");
 const password: Ref<string> = ref("");
+
+const emit = defineEmits(["login"]);
 </script>
 
 <style scoped>

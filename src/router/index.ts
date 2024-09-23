@@ -21,9 +21,13 @@ const router = createRouter(OPTIONS);
 router.beforeResolve((to, from, next) => {
   const publicPages = [ERoutes.LOGIN_ROUTE_NAME, ERoutes.REGISTER_ROUTE_NAME];
 
-  const authRequired = (): boolean => !publicPages.includes(to.path);
+  const authRequired = () => !publicPages.includes(to.name as string);
 
   const validSession = cookieIsValid(AUTH_COOKIE_KEY);
+
+  // console.log("authRequired -> ", authRequired());
+  // console.log("validSession -> ", validSession);
+  // console.log("Ruta a la que vamos -> ", to.name);
 
   if (
     authRequired() &&

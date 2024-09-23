@@ -19,13 +19,11 @@ export const useAuthStore = defineStore("auth", {
         console.log(data.msg);
         this.user = credentials.username;
         this.isAuthenticated = true;
-        return true;
       } catch (error: any) {
         console.error(
           "Error en login:",
           error.response?.data?.msg || error.message
         );
-        return false;
       }
     },
     async register(user: IUser) {
@@ -49,7 +47,7 @@ export const useAuthStore = defineStore("auth", {
     },
   },
   getters: {
-    isLoggedIn: (state: any) => state.isAuthenticated,
+    isAuthenticatedIn: (state: any) => state.isAuthenticated,
     getUser: (state: any) => state.user,
   },
 });

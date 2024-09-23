@@ -32,8 +32,8 @@ const authStore = useAuthStore();
 
 const onClickLoginBtn = ({ usuario, password }: any) => {
   authStore.login({ username: usuario, password }).then(() => {
-    if (authStore.isAuthenticated) {
-      router.push("/");
+    if (authStore.isAuthenticatedIn) {
+      router.push({ name: "Home", replace: true });
     }
   });
 };

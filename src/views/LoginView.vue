@@ -24,11 +24,18 @@
 <script setup lang="ts">
 import LoginFormComponent from "@/components/modules/login/LoginFormComponent.vue";
 import { useAuthStore } from "@stores/authStore";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const authStore = useAuthStore();
 
 const onClickLoginBtn = ({ usuario, password }: any) => {
-  authStore.login({ username: usuario, password });
+  authStore.login({ username: usuario, password }).then(() => {
+    if (authStore.isAuthenticated) {
+      router.push("/");
+    }
+  });
 };
 </script>
 

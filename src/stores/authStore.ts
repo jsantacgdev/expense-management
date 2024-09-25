@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { type IUser, type ICredentials } from "@shared-types/user.d";
-import axiosInstance from "@axios/index";
+import axios from "@axios/index";
 import { EEndpoints } from "@/shared/constants/endpoints";
 
 export const useAuthStore = defineStore("auth", {
@@ -11,7 +11,7 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async login(credentials: ICredentials) {
       try {
-        const response = axiosInstance.post(EEndpoints.LOGIN, {
+        const response = axios.post(EEndpoints.LOGIN, {
           username: credentials.username,
           password: credentials.password,
         });
@@ -28,7 +28,7 @@ export const useAuthStore = defineStore("auth", {
     },
     async register(user: IUser) {
       try {
-        const response = axiosInstance.post(EEndpoints.REGISTER, { ...user });
+        const response = axios.post(EEndpoints.REGISTER, { ...user });
         const { data } = await response;
         console.log(data.msg);
         this.user = user.username;
@@ -41,7 +41,7 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async logout() {
-      await axiosInstance.post(EEndpoints.LOGOUT);
+      await axios.post(EEndpoints.LOGOUT);
       this.user = "";
       this.isAuthenticated = false;
     },

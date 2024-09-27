@@ -1,9 +1,16 @@
 <template>
-  <div class="">
-    <h1>MainView</h1>
-  </div>
+  <header>
+    <HeaderComponent />
+  </header>
+  <main>
+    <RouterView />
+  </main>
+  <footer></footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+import HeaderComponent from "@shared/layout/HeaderComponent.vue";
+</script>
 
 <style scoped></style>

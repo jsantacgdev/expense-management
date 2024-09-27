@@ -60,7 +60,7 @@ export function logOut(): boolean {
   let deleted: boolean = false;
   try {
     if (cookieExists(AUTH_COOKIE_KEY)) {
-      clearSessionData;
+      clearSessionData();
     }
     deleted = true;
   } catch (e) {

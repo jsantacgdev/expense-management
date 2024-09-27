@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { type IUser, type ICredentials } from "@shared-types/user.d";
 import axios from "@axios/index";
 import { EEndpoints } from "@/shared/constants/endpoints";
+import { logOut } from "@/shared/utils/AuthUtils";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -30,7 +31,6 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response = axios.post(EEndpoints.REGISTER, { ...user });
         const { data } = await response;
-        console.log(data.msg);
         this.user = user.username;
         this.isAuthenticated = true;
       } catch (error: any) {
@@ -44,6 +44,8 @@ export const useAuthStore = defineStore("auth", {
       await axios.post(EEndpoints.LOGOUT);
       this.user = "";
       this.isAuthenticated = false;
+      logOut();
+      window.location.reload();
     },
   },
   getters: {

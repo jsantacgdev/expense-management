@@ -20,7 +20,7 @@ const items: Ref<MenuItem> = ref([
   },
   {
     label: "Ajustes",
-    icon: "pi pi-config",
+    icon: "pi pi-cog",
   },
   {
     label: "Salir",

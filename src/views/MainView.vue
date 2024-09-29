@@ -1,19 +1,14 @@
 <template>
-  <header>
-    <HeaderComponent />
-  </header>
-  <main>
-    <RouterView />
-  </main>
-  <footer>
-    <FooterComponent />
-  </footer>
+  <MainComponent />
 </template>
 
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import HeaderComponent from "@shared/layout/HeaderComponent.vue";
-import FooterComponent from "@/shared/layout/FooterComponent.vue";
+import router from "@/router";
+import MainComponent from "@/shared/layout/MainComponent.vue";
+import { ref, type Ref } from "vue";
+
+const thisRoute: Ref<String> = ref(router.currentRoute.value.name as string);
+console.log(thisRoute.value);
 </script>
 
 <style scoped></style>

@@ -20,6 +20,7 @@
       <FooterComponent />
     </footer>
   </div>
+  <Toast position="bottom-right" group="br" />
 </template>
 
 <script setup lang="ts">
@@ -29,6 +30,7 @@ import HeaderComponent from "@layout/HeaderComponent.vue";
 import { ERoutes } from "@router/constants";
 import { useRoute } from "vue-router";
 import { ref, type Ref, computed } from "vue";
+import Toast from "primevue/toast";
 
 const route = useRoute();
 const currentPath = computed(() => route.path);

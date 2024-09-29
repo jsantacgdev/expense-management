@@ -12,6 +12,7 @@ import Lara from "@primevue/themes/lara";
 import "primeicons/primeicons.css"; // Iconos de PrimeVue
 import InputText from "./shared/components/InputText.vue";
 import StyleClass from "primevue/styleclass";
+import ToastService from "primevue/toastservice";
 
 const app = createApp(App);
 
@@ -38,5 +39,6 @@ app.use(PrimeVue, {
     StyleClass: StyleClass,
   },
 });
+app.use(ToastService);
 
 app.mount("#app");

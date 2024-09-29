@@ -12,7 +12,7 @@ import { clearSessionData } from "@/shared/utils/AuthUtils";
 const AUTH_COOKIE_KEY = "Cash-Token";
 
 const OPTIONS: RouterOptions = {
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: ROUTES,
 };
 

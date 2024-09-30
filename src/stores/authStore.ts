@@ -7,6 +7,7 @@ import { logOut } from "@/shared/utils/AuthUtils";
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: "",
+    name: "",
     isAuthenticated: false,
   }),
   actions: {
@@ -17,8 +18,9 @@ export const useAuthStore = defineStore("auth", {
           password: credentials.password,
         });
         const { data } = await response;
-        console.log(data.msg);
+
         this.user = credentials.username;
+        this.name = data.name;
         this.isAuthenticated = true;
       } catch (error: any) {
         console.error(
@@ -31,7 +33,9 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response = axios.post(EEndpoints.REGISTER, { ...user });
         const { data } = await response;
+
         this.user = user.username;
+        this.name = data.name;
         this.isAuthenticated = true;
       } catch (error: any) {
         console.error(
@@ -51,5 +55,6 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     isAuthenticatedIn: (state: any) => state.isAuthenticated,
     getUser: (state: any) => state.user,
+    getName: (state: any) => state.name,
   },
 });

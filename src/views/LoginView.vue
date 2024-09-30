@@ -25,14 +25,25 @@
 import LoginFormComponent from "@/components/modules/login/LoginFormComponent.vue";
 import { useAuthStore } from "@stores/authStore";
 import { useRouter } from "vue-router";
+import { useToast } from "primevue/usetoast";
+import type { IUser } from "@/shared/types/user";
 
 const router = useRouter();
+
+const toast = useToast();
 
 const authStore = useAuthStore();
 
 const onClickLoginBtn = ({ usuario, password }: any) => {
-  authStore.login({ username: usuario, password }).then(() => {
+  authStore.login({ username: usuario, password }).then((data: any) => {
     if (authStore.isAuthenticatedIn) {
+      toast.add({
+        severity: "success",
+        summary: "Login exitoso",
+        detail: `¡Bienvenido, ${authStore.getName}!`,
+        life: 3000,
+        closable: true,
+      });
       router.push({ name: "Home", replace: true });
     }
   });

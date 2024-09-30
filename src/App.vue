@@ -20,7 +20,7 @@
       <FooterComponent />
     </footer>
   </div>
-  <Toast position="bottom-right" group="br" />
+  <Toast position="bottom-right" />
 </template>
 
 <script setup lang="ts">

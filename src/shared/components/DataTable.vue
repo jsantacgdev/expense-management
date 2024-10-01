@@ -2,7 +2,7 @@
   <div class="card">
     <DataTable
       :value="items"
-      tableStyle="min-width: 50rem"
+      tableStyle="min-width: 60rem"
       :stripedRows="stripedRows"
     >
       <Column

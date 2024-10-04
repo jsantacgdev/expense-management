@@ -1,15 +1,23 @@
 <template>
-  <h1>MainView</h1>
-  <DataTable
-    :items="items"
-    :columns="expensesTableHeaders"
-    :striped-rows="true"
-  />
+  <div class="grid grid-cols-2 w-screen h-full bg-blue-200">
+    <div class="col-span-1 flex items-start justify-center mt-32 ml-12">
+      <DataTable
+        :items="items"
+        :columns="expensesTableHeaders"
+        :striped-rows="true"
+        class="w-4/5"
+      />
+    </div>
+    <div class="col-span-1">
+      <h1>MainView</h1>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import DataTable from "@shared/components/DataTable.vue";
 import { expensesTableHeaders } from "@shared/constants/tableHeaders";
+import Card from "primevue/card";
 
 const items = [
   {
@@ -19,6 +27,7 @@ const items = [
     fecha: "2023-01-01",
     tipo: "Gasto",
     categoria: "Supermercados",
+    class: "text-center w-12",
   },
   {
     id: 2,
@@ -27,6 +36,7 @@ const items = [
     fecha: "2023-01-01",
     tipo: "Gasto",
     categoria: "Transportes",
+    class: "text-center w-12",
   },
   {
     id: 3,
@@ -35,6 +45,7 @@ const items = [
     fecha: "2023-01-01",
     tipo: "Gasto",
     categoria: "Comida",
+    class: "text-center w-12",
   },
   {
     id: 4,
@@ -43,6 +54,7 @@ const items = [
     fecha: "2023-01-01",
     tipo: "Gasto",
     categoria: "Comida",
+    class: "text-center w-12",
   },
   {
     id: 5,
@@ -51,6 +63,124 @@ const items = [
     fecha: "2023-01-01",
     tipo: "Gasto",
     categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 6,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 7,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 8,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 9,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 10,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 7,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 8,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 9,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 10,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 7,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 8,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 9,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
+  },
+  {
+    id: 10,
+    cantidad: 2,
+    nombre: "Comida",
+    fecha: "2023-01-01",
+    tipo: "Gasto",
+    categoria: "Comida",
+    class: "text-center w-12",
   },
 ];
 

@@ -16,6 +16,7 @@
         currentPath !== ERoutes.LOGIN_ROUTE_PATH &&
         currentPath !== ERoutes.REGISTER_ROUTE_PATH
       "
+      class="z-10 w-screen"
     >
       <FooterComponent />
     </footer>

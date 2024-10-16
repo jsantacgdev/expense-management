@@ -18,6 +18,27 @@ import { ChartColor } from "../constants/chartColors";
 import Chart from "primevue/chart";
 import Card from "primevue/card";
 
+const chartDatasets: Ref<Array<IChart>> = ref([] as IChart[]);
+const chartData: Ref<IChartData> = ref({} as IChartData);
+
+const props = defineProps({
+  data: {
+    type: Array,
+    default: [],
+  },
+  chartOptions: {
+    type: Object,
+    default: () => ({
+      title: { display: true, text: "Cantidad por Categoría" },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    }),
+  },
+});
+
 onMounted(() => {
   props.data.forEach((item: any) => {
     if (
@@ -47,35 +68,6 @@ onMounted(() => {
     datasets: [...chartDatasets.value],
   };
 });
-
-const chartDatasets: Ref<Array<IChart>> = ref([] as IChart[]);
-
-const chartData: Ref<IChartData> = ref({} as IChartData);
-
-const props = defineProps({
-  data: {
-    type: Array,
-    default: [],
-  },
-  chartOptions: {
-    type: Object,
-    default: () => ({
-      title: { display: true, text: "Cantidad por Categoría" },
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    }),
-  },
-});
-
-function generarColorAleatorio() {
-  // Generamos un número hexadecimal aleatorio de 6 dígitos
-  const hex = Math.floor(Math.random() * 16777215).toString(16);
-  // Añadimos el prefijo '#'
-  return "#" + hex;
-}
 </script>
 <style lang="scss" scoped>
 .card {

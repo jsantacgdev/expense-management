@@ -1,7 +1,9 @@
 <template>
   <Card class="w-full h-auto card overflow-hidden flex flex-col align-bottom">
     <template v-slot:header>
-      <h1 class="text-center mt-3 font-bold text-2xl">Últimas transacciones</h1>
+      <h1 class="text-center mt-3 font-bold text-2xl">
+        Gastos {{ chartLabels }}
+      </h1>
     </template>
     <template v-slot:content>
       <div class="chart-container">
@@ -12,26 +14,28 @@
 </template>
 
 <script setup lang="ts">
-import { type Ref, ref } from "vue";
+import { onMounted, type Ref, ref } from "vue";
 import type { IChart, IChartData } from "@shared/interfaces/chart";
 import Chart from "primevue/chart";
 import Card from "primevue/card";
 
-const chartLabels: Ref<Array<string>> = ref([]);
-const chartDatasets: Ref<Array<IChart>> = ref([
-  {
-    label: [],
-    data: [],
-    backgroundColor: ["#3b82f6"],
-    borderColor: ["#3b82f6"],
-    borderWidth: 1,
-  },
-]);
-
-const chartData: Ref<IChartData> = ref({
-  labels: chartLabels.value,
-  datasets: chartDatasets.value,
+onMounted(() => {
+  chartData.value = {
+    labels: chartLabels.value,
+    datasets: [chartDatasets.value],
+  };
 });
+
+const chartLabels: Ref<Array<string>> = ref([]);
+const chartDatasets: Ref<IChart> = ref({
+  label: [],
+  data: [],
+  backgroundColor: [],
+  borderColor: [],
+  borderWidth: 0,
+} as IChart);
+
+const chartData: Ref<IChartData> = ref({} as IChartData);
 
 const props = defineProps({
   data: {
@@ -51,21 +55,22 @@ const props = defineProps({
   },
 });
 
+function generarColorAleatorio() {
+  // Generamos un número hexadecimal aleatorio de 6 dígitos
+  const hex = Math.floor(Math.random() * 16777215).toString(16);
+  // Añadimos el prefijo '#'
+  return "#" + hex;
+}
+
 props.data.forEach((item: any) => {
+  const color = generarColorAleatorio();
   if (!chartLabels.value.includes(item.categoria)) {
     chartLabels.value.push(item.categoria);
-    chartDatasets.value[0].data.push(item.cantidad);
-    chartDatasets.value.push({
-      label: item.categoria,
-      data: [item.cantidad],
-      backgroundColor: ["#3b82f6"],
-      borderColor: ["#3b82f6"],
-      borderWidth: 1,
-    });
-  } else {
-    const index = chartLabels.value.indexOf(item.categoria);
-
-    chartDatasets.value[index].data[0] += item.cantidad;
+    chartDatasets.value.label.push(item.categoria);
+    chartDatasets.value.data.push(item.cantidad);
+    chartDatasets.value.backgroundColor.push(color);
+    chartDatasets.value.borderColor.push(color);
+    chartDatasets.value.borderWidth = 1;
   }
 });
 </script>

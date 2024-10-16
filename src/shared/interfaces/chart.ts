@@ -3,7 +3,7 @@ export interface IChart {
   data: Array<number>;
   backgroundColor: Array<string>;
   borderColor: Array<string>;
-  borderWidth: number;
+  borderWidth?: number;
 }
 
 export interface IChartData {

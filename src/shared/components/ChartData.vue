@@ -1,9 +1,7 @@
 <template>
   <Card class="w-full h-auto card overflow-hidden flex flex-col align-bottom">
     <template v-slot:header>
-      <h1 class="text-center mt-3 font-bold text-2xl">
-        Gastos {{ chartLabels }}
-      </h1>
+      <h1 class="text-center mt-3 font-bold text-2xl">Gastos</h1>
     </template>
     <template v-slot:content>
       <div class="chart-container">
@@ -16,24 +14,40 @@
 <script setup lang="ts">
 import { onMounted, type Ref, ref } from "vue";
 import type { IChart, IChartData } from "@shared/interfaces/chart";
+import { ChartColor } from "../constants/chartColors";
 import Chart from "primevue/chart";
 import Card from "primevue/card";
 
 onMounted(() => {
+  props.data.forEach((item: any) => {
+    const color = generarColorAleatorio();
+    if (
+      !chartDatasets.value
+        .map((dataset: IChart) => dataset.label[0])
+        .includes(item.categoria)
+    ) {
+      chartDatasets.value.push({
+        label: [item.categoria],
+        data: [item.cantidad],
+        backgroundColor: [color],
+        borderColor: [color],
+      });
+    } else {
+      chartDatasets.value[
+        chartDatasets.value.findIndex(
+          (dataset: IChart) => dataset.label[0] === item.categoria
+        )
+      ].data[0] += item.cantidad;
+    }
+  });
+
   chartData.value = {
-    labels: chartLabels.value,
-    datasets: [chartDatasets.value],
+    labels: ["Gastos"],
+    datasets: [...chartDatasets.value],
   };
 });
 
-const chartLabels: Ref<Array<string>> = ref([]);
-const chartDatasets: Ref<IChart> = ref({
-  label: [],
-  data: [],
-  backgroundColor: [],
-  borderColor: [],
-  borderWidth: 0,
-} as IChart);
+const chartDatasets: Ref<Array<IChart>> = ref([] as IChart[]);
 
 const chartData: Ref<IChartData> = ref({} as IChartData);
 
@@ -61,18 +75,6 @@ function generarColorAleatorio() {
   // Añadimos el prefijo '#'
   return "#" + hex;
 }
-
-props.data.forEach((item: any) => {
-  const color = generarColorAleatorio();
-  if (!chartLabels.value.includes(item.categoria)) {
-    chartLabels.value.push(item.categoria);
-    chartDatasets.value.label.push(item.categoria);
-    chartDatasets.value.data.push(item.cantidad);
-    chartDatasets.value.backgroundColor.push(color);
-    chartDatasets.value.borderColor.push(color);
-    chartDatasets.value.borderWidth = 1;
-  }
-});
 </script>
 <style lang="scss" scoped>
 .card {

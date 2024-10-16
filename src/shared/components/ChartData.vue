@@ -20,7 +20,6 @@ import Card from "primevue/card";
 
 onMounted(() => {
   props.data.forEach((item: any) => {
-    const color = generarColorAleatorio();
     if (
       !chartDatasets.value
         .map((dataset: IChart) => dataset.label[0])
@@ -29,8 +28,10 @@ onMounted(() => {
       chartDatasets.value.push({
         label: [item.categoria],
         data: [item.cantidad],
-        backgroundColor: [color],
-        borderColor: [color],
+        backgroundColor: [
+          ChartColor[item.categoria as keyof typeof ChartColor],
+        ],
+        borderColor: [ChartColor[item.categoria as keyof typeof ChartColor]],
       });
     } else {
       chartDatasets.value[

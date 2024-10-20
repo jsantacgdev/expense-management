@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IRegisterUser {
   name: string;
   lastname: string;
   username: string;
@@ -6,7 +6,7 @@ export interface IUser {
   password: string;
 }
 
-export interface ICredentials {
+export interface ILoginUser {
   username: string;
   password: string;
 }

@@ -23,12 +23,12 @@
 
 <script setup lang="ts">
 import SignupComponent from "@/components/modules/signup/SignupComponent.vue";
-import type { IUser } from "@/shared/types/user";
+import type { IRegisterUser } from "@/shared/types/user";
 import { useAuthStore } from "@stores/authStore";
 
 const authStore = useAuthStore();
 
-const onClickSignupBtn = (user: IUser) => {
+const onClickSignupBtn = (user: IRegisterUser) => {
   authStore.register(user);
 };
 </script>

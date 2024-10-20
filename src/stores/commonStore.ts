@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type IUser, type ICredentials } from "@shared-types/user.d";
+import { type IRegisterUser, type ILoginUser } from "@shared-types/user.d";
 import axios from "@axios/index";
 import { EEndpoints } from "@shared/constants/endpoints";
 import type { ICategoria } from "@shared/interfaces/common";

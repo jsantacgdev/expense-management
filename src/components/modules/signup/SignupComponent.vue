@@ -36,9 +36,9 @@ import InputText from "@shared/components/InputText.vue";
 import Button from "primevue/button";
 import InputPassword from "@/shared/components/InputPassword.vue";
 import Card from "primevue/card";
-import type { IUser } from "@shared-types/user";
+import type { IRegisterUser } from "@shared-types/user";
 
-const user: Ref<IUser> = ref({} as IUser);
+const user: Ref<IRegisterUser> = ref({} as IRegisterUser);
 
 const emit = defineEmits(["signup"]);
 

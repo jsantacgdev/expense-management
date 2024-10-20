@@ -61,7 +61,6 @@ export function getCookie(key: string): string {
       }
     }
   }
-  // console.log(`Valor de la cookie [${key}]: `, cookie);
   return cookie;
 }
 

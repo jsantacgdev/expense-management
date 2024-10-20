@@ -1,4 +1,4 @@
-import type { IAccesToken } from "@shared/interfaces/auth";
+import type { IAccesToken } from "@shared-interfaces/auth";
 import {
   decodeAccessToken,
   getCookieToken,
@@ -38,7 +38,6 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response.data);
     if (
       response.data["accessToken"] != null &&
       response.data["accessToken"] !== ""
@@ -47,10 +46,10 @@ axiosInstance.interceptors.response.use(
         response.data["accessToken"]
       ) as IAccesToken;
       if (GeneralUtils.isValid(decodedToken)) {
-        console.log(decodedToken);
+        // console.log(decodedToken);
       }
     } else {
-      console.log(response);
+      // console.log(response);
     }
     return response;
   },

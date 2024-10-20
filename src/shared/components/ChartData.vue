@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { onMounted, type Ref, ref } from "vue";
-import type { IChart, IChartData } from "@shared/interfaces/chart";
+import type { IChart, IChartData } from "@shared-interfaces/chart";
 import { ChartColor } from "../constants/chartColors";
 import Chart from "primevue/chart";
 import Card from "primevue/card";

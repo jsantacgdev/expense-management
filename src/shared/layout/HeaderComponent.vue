@@ -13,7 +13,6 @@ import { useAuthStore } from "@/stores/authStore";
 const authStore = useAuthStore();
 
 function emitLogoutEvent() {
-  console.log("emitLogoutEvent");
   authStore.logout();
 }
 

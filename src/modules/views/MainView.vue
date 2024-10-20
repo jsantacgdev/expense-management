@@ -11,13 +11,17 @@
     <div class="col-span-1 flex items-start justify-center mt-32 ml-12">
       <ChartData :data="items" />
     </div>
+    {{ categorias }}
   </div>
 </template>
 
 <script setup lang="ts">
+import type { ICategoria } from "@/shared/interfaces/common";
 import ChartData from "@shared/components/ChartData.vue";
 import DataTable from "@shared/components/DataTable.vue";
 import { expensesTableHeaders } from "@shared/constants/tableHeaders";
+import { useCategoryStore } from "@stores/commonStore";
+import { ref, type Ref } from "vue";
 
 const items = [
   {
@@ -173,4 +177,11 @@ const items = [
     categoria: "Ropa",
   },
 ];
+
+const categoryStore = useCategoryStore();
+const categorias: Ref<ICategoria[]> = ref([]);
+
+categoryStore.categorias().then(() => {
+  categorias.value = categoryStore.getterCategorias;
+});
 </script>

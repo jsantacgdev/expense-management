@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import SignupComponent from "@/components/modules/signup/SignupComponent.vue";
-import type { IRegisterUser } from "@/shared/types/user";
+import type { IRegisterUser } from "@/shared/interfaces/auth";
 import { useAuthStore } from "@stores/authStore";
 
 const authStore = useAuthStore();

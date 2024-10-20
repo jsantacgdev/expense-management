@@ -1,26 +1,35 @@
 import { defineStore } from "pinia";
-import { type IUser, type ICredentials } from "@shared-types/user.d";
+import {
+  type IRegisterUser,
+  type ILoginUser,
+  type IUser,
+} from "@shared-interfaces/auth";
 import axios from "@axios/index";
-import { EEndpoints } from "@/shared/constants/endpoints";
-import { logOut } from "@/shared/utils/AuthUtils";
+import { EEndpoints } from "@shared/constants/endpoints";
+import { logOut } from "@shared/utils/AuthUtils";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: "",
-    name: "",
+    user: {} as IUser,
     isAuthenticated: false,
   }),
   actions: {
-    async login(credentials: ICredentials) {
+    async login(credentials: ILoginUser) {
       try {
         const response = axios.post(EEndpoints.LOGIN, {
           username: credentials.username,
           password: credentials.password,
         });
         const { data } = await response;
-
-        this.user = credentials.username;
-        this.name = data.name;
+        console.log(data);
+        const { user } = data;
+        console.log(user);
+        this.user = {
+          username: user.username,
+          name: user.name,
+          id: user.id,
+        };
+        console.log(this.user);
         this.isAuthenticated = true;
       } catch (error: any) {
         console.error(
@@ -29,13 +38,16 @@ export const useAuthStore = defineStore("auth", {
         );
       }
     },
-    async register(user: IUser) {
+    async register(user: IRegisterUser) {
       try {
         const response = axios.post(EEndpoints.REGISTER, { ...user });
         const { data } = await response;
 
-        this.user = user.username;
-        this.name = data.name;
+        this.user = {
+          username: user.username,
+          name: data.name,
+          id: data.id,
+        };
         this.isAuthenticated = true;
       } catch (error: any) {
         console.error(
@@ -46,7 +58,7 @@ export const useAuthStore = defineStore("auth", {
     },
     async logout() {
       await axios.post(EEndpoints.LOGOUT);
-      this.user = "";
+      this.user = {} as IUser;
       this.isAuthenticated = false;
       logOut();
       window.location.reload();
@@ -55,6 +67,6 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     isAuthenticatedIn: (state: any) => state.isAuthenticated,
     getUser: (state: any) => state.user,
-    getName: (state: any) => state.name,
+    getName: (state: any) => state.user.name,
   },
 });

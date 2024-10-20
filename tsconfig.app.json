@@ -13,10 +13,10 @@
       "@views/*": ["./src/views/*"],
       "@axios/*": ["./src/plugins/axios/*"],
       "@stores/*": ["./src/stores/*"],
-      "@shared-types/*": ["./src/shared/types/*"],
       "@layout/*": ["./src/shared/layout/*"],
       "@modules/*": ["./src/modules/*"],
-      "@router/*": ["./src/router/*"]
+      "@router/*": ["./src/router/*"],
+      "@shared-interfaces/*": ["./src/shared/interfaces/*"]
     }
   }
 }

@@ -26,7 +26,7 @@ import LoginFormComponent from "@/components/modules/login/LoginFormComponent.vu
 import { useAuthStore } from "@stores/authStore";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
-import type { IRegisterUser } from "@/shared/types/user";
+import type { IRegisterUser } from "@/shared/interfaces/auth";
 
 const router = useRouter();
 

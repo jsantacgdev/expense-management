@@ -1,4 +1,4 @@
-import type { IColumn } from "@shared/interfaces/column";
+import type { IColumn } from "@shared-interfaces/column";
 
 export const expensesTableHeaders: IColumn[] = [
   { field: "nombre", header: "Nombre" },

@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { type IRegisterUser, type ILoginUser } from "@shared-interfaces/auth";
 import axios from "@axios/index";
 import { EEndpoints } from "@shared/constants/endpoints";
 import type { ICategoria } from "@shared-interfaces/common";

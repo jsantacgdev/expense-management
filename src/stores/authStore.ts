@@ -10,7 +10,11 @@ import { logOut } from "@shared/utils/AuthUtils";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: {} as IUser,
+    user: {
+      username: "",
+      name: "",
+      id: localStorage.getItem("user_id") || "",
+    } as IUser,
     isAuthenticated: false,
   }),
   actions: {
@@ -21,15 +25,14 @@ export const useAuthStore = defineStore("auth", {
           password: credentials.password,
         });
         const { data } = await response;
-        console.log(data);
         const { user } = data;
-        console.log(user);
+
         this.user = {
           username: user.username,
           name: user.name,
           id: user.id,
         };
-        console.log(this.user);
+        localStorage.setItem("user_id", this.user.id);
         this.isAuthenticated = true;
       } catch (error: any) {
         console.error(

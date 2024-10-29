@@ -38,6 +38,7 @@ export function hasBeenLogged(): boolean {
 export function clearSessionData(): void {
   deleteCookieLocalExpirationDate(AUTH_COOKIE_KEY);
   deleteCookie(AUTH_COOKIE_KEY);
+  localStorage.removeItem("user_id");
   localStorage.removeItem("username");
 }
 
@@ -45,7 +46,6 @@ export function refreshStoredSession(): boolean {
   let sessionUpdated = false;
   try {
     if (hasBeenLogged()) {
-      const store = useAuthStore();
       sessionUpdated = true;
     }
   } catch (e) {

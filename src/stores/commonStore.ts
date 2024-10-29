@@ -39,10 +39,8 @@ export const useCommonStore = defineStore("common", {
     },
     async gastos(idUsuario: string) {
       try {
-        const response = await axios.get(EEndpoints.EXPENSES, {
-          params: {
-            user: idUsuario,
-          },
+        const response = await axios.post(EEndpoints.EXPENSES, {
+          user: idUsuario,
         });
         const { data } = await response;
         this.gastos = data.gastos;
@@ -57,6 +55,6 @@ export const useCommonStore = defineStore("common", {
   getters: {
     getterCategorias: (state: any) => state.categorias,
     getterTipoGastos: (state: any) => state.tipoGastos,
-    getterUsuarios: (state: any) => state.gastos,
+    getterGastos: (state: any) => state.gastos,
   },
 });

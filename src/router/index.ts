@@ -25,15 +25,24 @@ router.beforeResolve((to, from, next) => {
 
   const validSession = cookieIsValid(AUTH_COOKIE_KEY);
   if (
-    authRequired() &&
+    localStorage.getItem("user_id") == null &&
     to.name !== ERoutes.LOGIN_ROUTE_NAME &&
-    to.name !== ERoutes.REGISTER_ROUTE_NAME &&
-    !validSession
+    to.name !== ERoutes.REGISTER_ROUTE_NAME
   ) {
     clearSessionData();
     next({ name: ERoutes.LOGIN_ROUTE_NAME });
   } else {
-    next();
+    if (
+      authRequired() &&
+      to.name !== ERoutes.LOGIN_ROUTE_NAME &&
+      to.name !== ERoutes.REGISTER_ROUTE_NAME &&
+      !validSession
+    ) {
+      clearSessionData();
+      next({ name: ERoutes.LOGIN_ROUTE_NAME });
+    } else {
+      next();
+    }
   }
 });
 
